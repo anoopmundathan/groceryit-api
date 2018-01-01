@@ -1,0 +1,11 @@
+{
+  "name": "groceryit-api",
+  "version": "1.0.0",
+  "description": "Retail Grocery store platform - API Server",
+  "main": "index.js",
+  "author": "Anoop Mundathan <anoop.mundathan@gmail.com> (http://anoopmundathan.me/)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
