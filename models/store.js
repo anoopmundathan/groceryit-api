@@ -6,13 +6,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Create Schema
-const StoreSchema = new Schema({
+const storeSchema = new Schema({
 	firstName: String,
 	lastName: String,
 	storeName: String,
 	mobile: Number,
 	email: String,
-	typeOfBusiness: String,
 	createdAt: {
 		type: Date,
 		default: Date.now
@@ -20,7 +19,6 @@ const StoreSchema = new Schema({
 });
 
 // Create Model
-const Store = mongoose.model('Store', StoreSchema);
+const Store = mongoose.model('store', storeSchema);
 
 module.exports = Store;
-
