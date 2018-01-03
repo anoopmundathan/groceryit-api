@@ -12,6 +12,7 @@ const StoreSchema = new Schema({
 	storeName: String,
 	mobile: Number,
 	email: String,
+	typeOfBusiness: String,
 	createdAt: {
 		type: Date,
 		default: Date.now

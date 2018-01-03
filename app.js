@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
-const routes = require('./routes');
+const stores = require('./routes/stores');
 const mongoose = require('mongoose');
 
 const app = express();
@@ -38,9 +38,10 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.use('/api/v1/stores', routes);
+// Routes
+app.use('/api/v1/stores', stores);
 
-// Send 404 if route is not found
+// Catch 404 Errors and  forward then to error handler
 app.use((req, res, next) => {
 	const err = new Error("Not Found");
 	err.status = 404;
@@ -49,14 +50,20 @@ app.use((req, res, next) => {
 
 // Error Handler
 app.use((err, req, res, next) => {
-	res.status(err.status || 500);
-	res.json({
+	const status = err.status || 500
+	
+	// Respond to client
+	res.status(status).json({
 		error: {
 			message: err.message
 		}
 	});
+
+	// Respond to us
+	console.log(err);
 });
 
+// Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`API Server running at port ${PORT}`);
