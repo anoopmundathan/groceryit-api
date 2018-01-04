@@ -4,17 +4,20 @@ const storeController = require('../controllers/stores');
 
 const router = express.Router();
 
-// GET  /api/v1/stores - Get all store
-// POST /api/v1/stores - Create New Store
+// GET  /api/v1/stores - Get stores
+// POST /api/v1/stores - New store
 router.route('/')
 	.get(storeController.index)
 	.post(storeController.newStore);
 
-// GET    /api/v1/stores/:id - Get a single store
-// PUT    /api/v1/stores/:id - Edit a single store
+// GET    /api/v1/stores/:id - Get store
+// PATCH  /api/v1/stores/:id - Edit store
+// PUT    /api/v1/stores/:id - Replace store 
 // DELETE /api/v1/stores/:id - Delete a single store
 router.route('/:storeId')
 	.get(storeController.getStore)
+	.patch(storeController.updateStore)
+	.put(storeController.replaceStore)
 
 // POST   /api/v1/stores/:id/items - Create new product item for a store
 // GET    /api/v1/stores/:id/items - Get all product items belongs to a store

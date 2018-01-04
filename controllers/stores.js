@@ -26,5 +26,27 @@ module.exports = {
     } catch(err) {
       next(err);
     }
+  },
+  updateStore: async (req, res, next) => {
+    // req.body may contain any number of fields
+    try {
+      const { storeId } = req.params;
+      const newValue = req.body;
+      const store = await Store.findByIdAndUpdate(storeId, newValue);
+      res.status(200).json(store);
+    } catch(err) {
+      next(err);
+    }
+  },
+  replaceStore: async (req, res, next) => {
+    // enforce that req.body must contain all the fields
+    try {
+      const { storeId } = req.params;
+      const newValue = req.body;
+      const store = await Store.findByIdAndUpdate(storeId, newValue);
+      res.status(200).json(store);
+    } catch(err) {
+      next(err);
+    }
   }
 }
