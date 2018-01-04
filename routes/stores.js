@@ -1,27 +1,32 @@
 const express = require('express');
 const Store = require('../models/store');
+const storeController = require('../controllers/stores');
 
 const router = express.Router();
 
 // POST /api/v1/stores - Create store
-router.post('/', (req, res, next) => {
-  const store = new Store(req.body);
-  store.save((err, store) => {
-      if(err) return next(err);
-		  res.status(201);
-		  res.json(store);
-  });
-});
+router.route('/')
+	.get(storeController.getAllStore)
+	.post(storeController.createNewStore);
+
+// router.post('/', (req, res, next) => {
+//   const store = new Store(req.body);
+//   store.save((err, store) => {
+//       if(err) return next(err);
+// 		  res.status(201);
+// 		  res.json(store);
+//   });
+// });
 
 
 // GET /api/v1/stores - Get all stores
-router.get('/', (req, res, next) => {
-	Store.find({})
-		.exec((err, stores) => {
-			if(err) return next(err);
-			res.json(stores);
-		});
-});
+// router.get('/', (req, res, next) => {
+// 	Store.find({})
+// 		.exec((err, stores) => {
+// 			if(err) return next(err);
+// 			res.json(stores);
+// 		});
+// });
 
 // GET /api/v1/stores/:id - Get a single store
 
