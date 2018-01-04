@@ -13,11 +13,12 @@ router.route('/')
 // GET    /api/v1/stores/:id - Get store
 // PATCH  /api/v1/stores/:id - Edit store
 // PUT    /api/v1/stores/:id - Replace store 
-// DELETE /api/v1/stores/:id - Delete a single store
+// DELETE /api/v1/stores/:id - Delete store
 router.route('/:storeId')
 	.get(storeController.getStore)
 	.patch(storeController.updateStore)
 	.put(storeController.replaceStore)
+	.delete(storeController.removeStore);
 
 // POST   /api/v1/stores/:id/items - Create new product item for a store
 // GET    /api/v1/stores/:id/items - Get all product items belongs to a store

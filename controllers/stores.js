@@ -48,5 +48,14 @@ module.exports = {
     } catch(err) {
       next(err);
     }
+  },
+  deleteStore: async (req, res, next) => {
+    try {
+      const { storeId } = req.params;
+      const store = await Store.findByIdAndRemove(storeId);
+      res.json(200).json(store);
+    } catch(err) {
+      next(err);
+    }
   }
 }
