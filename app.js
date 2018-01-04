@@ -1,8 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
-const stores = require('./routes/stores');
 const mongoose = require('mongoose');
+
+// Routes
+const stores = require('./routes/stores');
+const items = require('./routes/items');
 
 const app = express();
 
@@ -40,6 +43,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/api/v1/stores', stores);
+app.use('/api/v1/items', items);
 
 // Catch 404 Errors and  forward then to error handler
 app.use((req, res, next) => {

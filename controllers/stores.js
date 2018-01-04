@@ -54,7 +54,7 @@ module.exports = {
     try {
       const { storeId } = req.params;
       const store = await Store.findByIdAndRemove(storeId);
-      res.json(200).json(store);
+      res.status(200).json(store);
     } catch(err) {
       next(err);
     }
@@ -82,6 +82,5 @@ module.exports = {
     } catch(err) {
       next(err);
     }
-  },
-  
+  }
 }
