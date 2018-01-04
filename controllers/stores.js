@@ -1,7 +1,8 @@
 const Store = require('../models/store');
+const Item = require('../models/item');
 
 module.exports = {
-  index: async (req, res, next) => {
+  getStores: async (req, res, next) => {
     try {
       const stores = await Store.find({});
       res.status(200).json(stores);
@@ -49,11 +50,25 @@ module.exports = {
       next(err);
     }
   },
-  deleteStore: async (req, res, next) => {
+  removeStore: async (req, res, next) => {
     try {
       const { storeId } = req.params;
       const store = await Store.findByIdAndRemove(storeId);
       res.json(200).json(store);
+    } catch(err) {
+      next(err);
+    }
+  },
+  newStoreItem: async (req, res, next) => {
+    try {
+      const { storeId } = req.params;
+      const newItem = new Item(req.body);
+      // Get store
+      const store = await Store.findById(storeId);
+      // Set the relation
+      newItem.storeId = store;
+      const item = await newItem.save();
+      res.status(201).json(item);
     } catch(err) {
       next(err);
     }

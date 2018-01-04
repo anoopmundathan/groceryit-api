@@ -7,7 +7,7 @@ const router = express.Router();
 // GET  /api/v1/stores - Get stores
 // POST /api/v1/stores - New store
 router.route('/')
-	.get(storeController.index)
+	.get(storeController.getStores)
 	.post(storeController.newStore);
 
 // GET    /api/v1/stores/:id - Get store
@@ -22,6 +22,8 @@ router.route('/:storeId')
 
 // POST   /api/v1/stores/:id/items - Create new product item for a store
 // GET    /api/v1/stores/:id/items - Get all product items belongs to a store
+router.route('/:storeId/items')
+	.post(storeController.newStoreItem);
 
 // GET    /api/v1/stores/:id/items/:id - Get a single item belongs to a store
 // PUT    /api/v1/stores/:id/items/:id - Update product item belongs to a store
