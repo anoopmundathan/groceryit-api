@@ -59,6 +59,16 @@ module.exports = {
       next(err);
     }
   },
+  getStoreItems: async (req, res, next) => {
+    try {
+      const { storeId } = req.params
+      const store = await Store.findById(storeId);
+      const items = await Item.find({ storeId: store._id })
+      res.status(200).json(items);
+    } catch(err) {
+      next(err);
+    }
+  },
   newStoreItem: async (req, res, next) => {
     try {
       const { storeId } = req.params;
@@ -66,11 +76,12 @@ module.exports = {
       // Get store
       const store = await Store.findById(storeId);
       // Set the relation
-      newItem.storeId = store;
+      newItem.storeId = store._id;
       const item = await newItem.save();
       res.status(201).json(item);
     } catch(err) {
       next(err);
     }
-  }
+  },
+  
 }

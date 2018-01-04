@@ -20,9 +20,10 @@ router.route('/:storeId')
 	.put(storeController.replaceStore)
 	.delete(storeController.removeStore);
 
-// POST   /api/v1/stores/:id/items - Create new product item for a store
 // GET    /api/v1/stores/:id/items - Get all product items belongs to a store
+// POST   /api/v1/stores/:id/items - Create new product item for a store
 router.route('/:storeId/items')
+	.get(storeController.getStoreItems)
 	.post(storeController.newStoreItem);
 
 // GET    /api/v1/stores/:id/items/:id - Get a single item belongs to a store
