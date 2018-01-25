@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Parse application/json 
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://localhost:27017/grocery');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/grocery');
 const db = mongoose.connection;
 
 db.on('error', err => {

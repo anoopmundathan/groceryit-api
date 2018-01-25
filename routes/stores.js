@@ -1,5 +1,4 @@
 const express = require('express');
-const Store = require('../models/store');
 const storeController = require('../controllers/stores');
 
 const router = express.Router();
@@ -25,9 +24,5 @@ router.route('/:storeId')
 router.route('/:storeId/items')
 	.get(storeController.getStoreItems)
 	.post(storeController.newStoreItem);
-
-// GET    /api/v1/stores/:id/items/:id - Get a single item belongs to a store
-// PUT    /api/v1/stores/:id/items/:id - Update product item belongs to a store
-// DELETE /api/v1/stores/:id/items/:id - Delete product item belongs to a store
-
+	
 module.exports = router;
